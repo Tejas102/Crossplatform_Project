@@ -1,6 +1,12 @@
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+console.log(navigator.contacts);
+}
+
 // event listeners
 document.addEventListener("deviceReady", connectToDatabase);
-document.getElementById("loginButton").addEventListener("click", loginButtonPressed);
+//document.getElementById("loginButton").addEventListener("click", loginButtonPressed);
 document.getElementById("signupButton").addEventListener("click", signupButtonPressed);
 document.getElementById("showButton").addEventListener("click", showButtonPressed);
 
