@@ -11,8 +11,12 @@ var onSuccess = function(position) {
              'Timestamp: '         + position.timestamp                + '\n');
    };
 
+   document.getElementById("name").addEventListener("click", likelogic);
+
    function likelogic() {
      console.log("like logic will run now");
+
+
    }
 
    function dislikelogic() {
