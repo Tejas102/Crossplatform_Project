@@ -19,18 +19,20 @@
     </head>
     <body>
         <div class="app">
+          <h1> Where are you?! </h1>
+          <p id="locationInfo"></p>
 
             <form class="" action="profile.html" method="post">
 
-            <button type="submit" name="button">P</button>
+            <button type="submit" name="button">Profile</button>
             </form>
             <form class="" action="swipe.html" method="post">
 
-            <button type="submit" name="button">SW</button>
+            <button type="submit" name="button">Swipe Screen</button>
             </form>
             <form class="" action="messages.html" method="post">
 
-            <button type="submit" name="button">M</button>
+            <button type="submit" name="button">Messages</button>
             </form>
             <button type="button" name="button">Haloo</button>
             <input type="text" name="" value="">
@@ -80,8 +82,17 @@
 
           <div class="content-padded">
             <button class="icon icon-refresh" type="button" name="button"></button>
-            <button class="icon icon-close" type="button" name="button"></button>
-            <button class="icon icon-star-filled" type="button" name="button"></button>
+
+            <button class="icon icon-close" type="button" name="button" onclick="dislikelogic()";>
+            //  dislike button
+
+            </button>
+
+            <button class="icon icon-star-filled" type="button" name="button" onclick="likelogic()";>
+              // like button
+
+            </button>
+
             <button class="icon icon-info" type="button" name="button"></button>
             <button class="icon icon-bars" type="button" name="button"></button>
 
