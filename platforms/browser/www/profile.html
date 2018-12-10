@@ -7,7 +7,7 @@
 
     <!-- Include the compiled Ratchet JS -->
     <script src="js/ratchet.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/profile.js"></script>
     <title></title>
   </head>
   <body>
@@ -27,6 +27,22 @@
     </form>
 
     <img src="assets/images/welcome.jpg" alt="" style="width:50%;">
+
+    <div data-role="page">
+
+      <div data-role="header">
+        <h1>Profile</h1>  <button id="logout">Logout</button>
+        <button id="home">Home</button>
+
+      </div>
+      <!-- /header -->
+       <a href="profilepic.html">
+      <img id="photoContainer" style="border:3px solid red;max-height: 40%; max-width:70%;border-radius: 50%;">
+      </a>
+
+      <!-- Description -->
+      <span id="resultsSection"></span>
+      <input type="submit" id="edit" value="Edit Profile" >
 
     <form class="" action="settings.html" method="post">
 
