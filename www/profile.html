@@ -1,32 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-    <!-- Include the compiled Ratchet CSS -->
-    <link href="css/ratchet.css" rel="stylesheet">
+   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-    <!-- Include the compiled Ratchet JS -->
-    <script src="js/ratchet.js"></script>
-    <script src="js/profile.js"></script>
-    <title></title>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Tynder</title>
   </head>
   <body>
-  <div class="">
-
-    <form class="" action="profile.html" method="post">
-
-    <button type="submit" name="button">Profile</button>
-    </form>
-    <form class="" action="swipe.html" method="post">
-
-    <button type="submit" name="button">Swipe</button>
-    </form>
-    <form class="" action="messages.html" method="post">
-
-    <button type="submit" name="button">Messages</button>
-    </form>
-
-    <img src="assets/images/welcome.jpg" alt="" style="width:50%;">
 
     <div data-role="page">
 
@@ -43,43 +30,14 @@
       <!-- Description -->
       <span id="resultsSection"></span>
       <input type="submit" id="edit" value="Edit Profile" >
-
-    <form class="" action="settings.html" method="post">
-
-    <button type="submit" name="button">Settings</button>
-    </form>
-    <form class="" action="profile.html" method="post">
-
-    <button type="submit" name="button">Add Media</button>
-    </form>
-    <form class="" action="profile.html" method="post">
-
-    <button type="submit" name="button">Edit Info</button>
-    </form>
-
-    <nav class="bar bar-tab">
-<a class="tab-item active" href="index.html">
-<span class="icon icon-home"></span>
-<span class="tab-label">Home</span>
-</a>
-<a class="tab-item" href="profile.html">
-<span class="icon icon-person"></span>
-<span class="tab-label">Profile</span>
-</a>
-<a class="tab-item" href="swipe.html">
-<span class="icon icon-star-filled"></span>
-<span class="tab-label">Start Swipping!</span>
-</a>
-<!-- <a class="tab-item" href="#">
-<span class="icon icon-search"></span>
-<span class="tab-label">Search</span>
-</a> -->
-<a class="tab-item" href="settings.html">
-<span class="icon icon-gear"></span>
-<span class="tab-label">Settings</span>
-</a>
-</nav>
-
+      <!-- Photo.  User can either:
+      Choose an existing photo from their phone’s gallery
+      Take a photo with their camera
+      Change their name
+      Change their location -->
   </div>
+   <script type="text/javascript" src="cordova.js"></script>
+         <script type="text/javascript" src="js/profile.js"></script>
+
   </body>
 </html>

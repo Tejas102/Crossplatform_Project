@@ -2,28 +2,28 @@
 document.addEventListener("deviceReady", connectToDatabase);
 document.getElementById("edit").addEventListener("click", editButton);
 document.getElementById("logout").addEventListener("click", logout);
-document.getElementById("swipe").addEventListener("click", swipe);
+document.getElementById("home").addEventListener("click", home);
 
 var session;
 function logout()
 {
   session= sessionStorage.removeItem("session");
     //alert("session"+session);
-        window.location.replace("login.html");
+        window.location.replace("index.html");
 
 }
-function swipe()
+function home()
 {
   session=sessionStorage.getItem("session");
     //alert("session"+session);
     if(session==1)
     {
-    window.location.replace("swipe.html");
+    window.location.replace("home.html");
     }
     else
     {
       alert("your session expired please login again");
-       window.location.replace("login.html");
+       window.location.replace("index.html");
     }
 }
 
@@ -45,7 +45,7 @@ function editButton() {
     else
     {
       alert("your session expired please login again");
-       window.location.replace("login.html");
+       window.location.replace("index.html");
     }
   }
 

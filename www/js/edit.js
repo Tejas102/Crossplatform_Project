@@ -3,12 +3,12 @@ document.addEventListener("deviceReady", connectToDatabase);
 document.getElementById("update").addEventListener("click", updateButton);
 document.getElementById("takePhotoButton").addEventListener("click", takePhoto);
 document.getElementById("pickPhotoButton").addEventListener("click", pickPhotoFromGallery);
-document.getElementById("swipe").addEventListener("click", swipe);
+document.getElementById("home").addEventListener("click", home);
 document.getElementById("goBack").addEventListener("click", goBack);
 
-function swipe()
+function home()
 {
-  window.location.replace("swipe.html");
+  window.location.replace("home.html");
 }
 function goBack(){
     window.location.replace("profile.html");
