@@ -1,170 +1,99 @@
-
-
-var onSuccess = function(position) {
-       alert('Latitude: '          + position.coords.latitude          + '\n' +
-             'Longitude: '         + position.coords.longitude         + '\n' +
-             'Altitude: '          + position.coords.altitude          + '\n' +
-             'Accuracy: '          + position.coords.accuracy          + '\n' +
-             'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-             'Heading: '           + position.coords.heading           + '\n' +
-             'Speed: '             + position.coords.speed             + '\n' +
-             'Timestamp: '         + position.timestamp                + '\n');
-   };
-
-   function likelogic() {
-     console.log("like logic will run now");
-   }
-
-   function dislikelogic() {
-     console.log("dislike logic will run now");
-   }
-
-   // onError Callback receives a PositionError object
-   //
-   function onError(error) {
-       alert('code: '    + error.code    + '\n' +
-             'message: ' + error.message + '\n');
-   }
-
-   navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-console.log(navigator.contacts);
-}
-
-// event listeners
+//------initiate database---------//
+console.log("welcome");
 document.addEventListener("deviceReady", connectToDatabase);
-//document.getElementById("loginButton").addEventListener("click", loginButtonPressed);
-document.getElementById("signupButton").addEventListener("click", signupButtonPressed);
-document.getElementById("showButton").addEventListener("click", showButtonPressed);
-
-// my functions go here  Insert
-//========================
-function signupButtonPressed() {
-  // debug:
-  console.log("Sign Up button pressed!");
-  alert("Signup button pressed!");
-//1. get data from ui'
- var e = document.getElementById("emailBox1").value;
- var p = document.getElementById("pwdBox1").value;
- var n = document.getElementById("nameBox").value;
- var d = document.getElementById("dobBox").value;
- var l = document.getElementById("locBox").value;
-
-   console.log("Email : " +e);
-   console.log("Password : " +p);
-   console.log("Name : " +n);
-   console.log("DOB : " +d);
-   console.log("Location : " +l);
-
-
-
-  //insert into tables
-	//	"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, name TEXT, dob INTEGER, location  TEXT)",
-  db.transaction(
-  		function(tx){
-  			tx.executeSql( "INSERT INTO users(email, password, name, dob, location) VALUES (?, ?, ?, ?, ?)",
-  			[e, p, n, d, l],
-  			onSuccessExecuteSql,
-        onSuccess1,
-  			onError )
-  		},
-  		onError,
-  		onReadyTransaction
-  	)
-}
-
-//========================
-function loginButtonPressed() {
-  // debug:
-  console.log(" Login button pressed!");
-  alert("Login button pressed!");
-//1. get data from ui'
- var e = document.getElementById("emailBox").value;
- var p = document.getElementById("pwdBox").value;
-
-   console.log("Email : " +e);
-   console.log("Password : " +p);
-alert("Email: " +e +"\n"+ "Password: "+p);
-  //insert into tables
-  db.transaction(
-  		function(tx){
-  			tx.executeSql( "SELECT * FROM users where email=? and password=?", [e, p],
-  			 onSuccessExecuteSql,
-         onSuccess,
-  			onError )
-  		},
-  		onError,
-  		onReadyTransaction
-  	)
-}
-// ===============
-function showButtonPressed() {
-  //debug:
-  console.log("show button pressed!");
-  alert("show button pressed!");
-
-  // select from table 1. run query
-  db.transaction(
-  		function(tx){
-  			tx.executeSql( "SELECT * FROM users",
-  			[],
-  			displayResults,
-  			onError )
-  		},
-  		onError,
-  		onReadyTransaction
-  	)
-}
-function displayResults( tx, results ){
-
-  if(results.rows.length == 0) {
-    alert("No records found");
-    return false;
-  }
-
-  var row = "";
-        for(var i=0; i<results.rows.length; i++) {
-          document.getElementById("resultsSection").innerHTML +=
-          "<p> Name: "
-        +   results.rows.item(i).email
-        + "<br>"
-        + "Dept: "
-        +   results.rows.item(i).password
-        + "<br>"
-        + ": "
-        +   results.rows.item(i).name
-        + "<br>"
-        + "Location: "
-        +   results.rows.item(i).location
-        + "</p>";
-
-        }
-
-}
-//====================================
-
-
-// connect to a database
+document.getElementById("login").addEventListener("click", loginButton);
+document.getElementById("create").addEventListener("click", redirect);
 var db = null;
+var inputName = 0;
+var inputPassword = 0;
 
 
+
+// function login(){
+//     alert("login  button pressed");
+// }
+function loginButton() {
+
+    console.log("login  button pressed");
+    console.log("login pressed");
+    inputName = document.getElementById("email").value;
+    inputPassword = document.getElementById("password").value;
+    console.log(inputName + inputPassword);
+    db.transaction(
+      function(tx){
+
+          tx.executeSql(
+            "SELECT * FROM user where email = ? AND password = ?",
+            [inputName,inputPassword],
+            displayResults,
+            onError
+          )
+      },
+      onError,
+      onReadyTransaction
+    )
+  }
+  function displayResults( tx, results ){
+    console.log("display");
+    if(results.rows.length == 0) {
+            alert("Please enter valid username and password");
+            window.location.replace("index.html");
+            return false;
+      }
+      else{
+         console.log("welcome");
+      var row = "";
+      for(var i=0; i<results.rows.length; i++) {
+      name = results.rows.item(i).email;
+
+      password = results.rows.item(i).password;
+
+
+      localStorage.setItem("mail", name);
+      localStorage.setItem("password", password);
+      localStorage.setItem("userEntry", 1);
+      sessionStorage.setItem("session", 1);
+
+// <<<<<<< HEAD
+       window.location.replace("home.html");
+         }
+// =======
+     //window.location.replace("profile.html");
+  }
+}
+
+function redirect(){
+ console.log("redirect");
+  window.location.replace("signup.html");
+}
+
+  function onReadyTransaction(){
+    console.log( 'Transaction completed' )
+  }
+  function onSuccessExecuteSql( tx, results ){
+    console.log( 'Execute SQL completed' );
+  }
+  function onError( err ){
+    console.log( "eroor message"+err.message )
+  }
 
 function connectToDatabase() {
   console.log("device is ready - connecting to database");
+
+
   // 2. open the database. The code is depends on your platform!
   if (window.cordova.platformId === 'browser') {
     console.log("browser detected...");
+    console.log("browser detected");
     // For browsers, use this syntax:
     //  (nameOfDb, version number, description, db size)
     // By default, set version to 1.0, and size to 2MB
-    db = window.openDatabase("tynd", "1.0", "Database for Tynder Dating App", 2*1024*1024);
+    db = window.openDatabase("cestar", "1.0", "Database for Cestar College app", 2*1024*1024);
   }
   else {
-    alert("mobile device detected");
+    console.log("mobile device detected");
     console.log("mobile device detected!");
-    var databaseDetails = {"name":"tynd.db", "location":"default"}
+    var databaseDetails = {"name":"cestar.db", "location":"default"}
     db = window.sqlitePlugin.openDatabase(databaseDetails);
     console.log("done opening db");
   }
@@ -173,46 +102,36 @@ function connectToDatabase() {
     alert("databse not opened!");
     return false;
   }
-// creating tables..
-db.transaction(
-		function(tx){
-			// Execute the SQL via a usually anonymous function
-			// tx.executeSql( SQL string, arrary of arguments, success callback function, failure callback function)
-			// To keep it simple I've added to functions below called onSuccessExecuteSql() and onFailureExecuteSql()
-			// to be used in the callbacks
-			tx.executeSql(
-				"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, name TEXT, dob INTEGER, location  TEXT)",
-				[],
-				onSuccessExecuteSql,
-				onError
-			)
-		},
-		onError,
-		onReadyTransaction
-	)
-}
 
-// some functions related to  the  creation of tables..!!
-function onReadyTransaction( ){
-  console.log( 'Transaction completed' )
+db.transaction(
+        function(tx){
+            tx.executeSql(
+                "CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, name TEXT, birthdate TEXT, location TEXT, description TEXT, phone TEXT, profile TEXT)",
+                [],
+                insertUser,
+                onError
+            )
+        },
+        onError,
+       onReadyTransaction
+    )
+
 }
-function onSuccessExecuteSql( tx, results ){
-  console.log( 'Execute SQL completed' )
-  //alert("Email: " +e +"\n"+ "Password: "+p);
-  //alert("yay ne yamma ochindhi");
-  //window.location.href="userhome.html";
-}
-function onSuccess( tx, results ){
-  console.log( 'Going Home Page' )
-  alert("yay ne yamma ochindhi");
-  window.location.href="userhome.html";
-}
-function onSuccess1( tx, results ){
-  console.log( 'Going Home Page' )
-  alert("yay ne yamma ochindhi");
-  window.location.href="signup.html";
-}
-function onError( err ){
-  console.log( err )
-//  alert("modda gudshindhi");
+function insertUser(){
+  console.log("insert user");
+  if (localStorage.getItem("userEntry") != 1){
+    console.log(localStorage.getItem("userEntry"));
+  db.transaction(
+        function(tx){
+            tx.executeSql(
+                "INSERT INTO user(email, password, name, birthdate, location, description, phone) VALUES('saloni@gmail.com','1234', 'saloni','15/4/1996','toronto','lambton college','123456789'),('tejas@gmail.com','1234', 'tejas','2/2/1994','brampton','ww','12345678'),('shashank@gmail.com','1234', 'shashank','3/3/1994','toronto','e','1234567')",
+                [],
+                onSuccessExecuteSql,
+                onError
+            )
+        },
+        onError,
+        onReadyTransaction
+    )
+ }
 }

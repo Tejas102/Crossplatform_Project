@@ -207,8 +207,6 @@ function contactFunction() {
     console.log("ERROR " + err);
   }
 
-
-
 }
 
 function plusSlides() {
@@ -234,7 +232,6 @@ function plusSlides() {
         userIHate[i - 1]["dob"] +
         "";
 
-    //slider_content.innerHTML = "<img src="+image[i-1]+".jpg";
 }
 
 function minusSlides() {
@@ -266,22 +263,20 @@ function minusSlides() {
 }
 
 function currentLocation() {
-  //  console.log("getting location!");
+
     var xhr = new XMLHttpRequest
     xhr.open('GET', 'https://geoip-db.com/jsonp/');
     xhr.send(null);
     xhr.onreadystatechange = function() {
         console.log("coming back!");
-        console.log("coming back!");
 
-        var DONE = 4; // readyState 4 means the request is done.
-        var OK = 200; // status 200 is a successful return.
+
+        var DONE = 4;
+        var OK = 200;
         if (xhr.readyState === DONE) {
             console.log("Done getting xhr request");
             if (xhr.status === OK) {
-          //      console.log("xhr request == OK");
-            //    console.log(xhr.responseText); // 'This is the returned text.'
-                //getting string from net
+
                 var response = xhr.responseText;
 
                 var r = JSON.stringify(response);
@@ -300,7 +295,7 @@ function currentLocation() {
         }
         else {
             console.log("error when fetching xhr request");
-            console.log("error when fetching xhr request");
+
         }
     }
 }
@@ -311,7 +306,7 @@ function hateFunction() {
         function(tx) {
 
             tx.executeSql(
-                "SELECT * FROM hateData",
+                "SELECT * FROM Dislike",
                 [],
 
                 displayResults,
@@ -347,7 +342,7 @@ function displayResults(tx, results) {
     var c = 0;
     var p = 0;
     if (results.rows.length == 0) {
-        alert("you have nobody in block person list");
+      //  alert("you have nobody in block person list");
 
     for (var z = 1; z <= image; z++) {
             userIHate[r] = userNearMe[z - 1];
@@ -452,7 +447,7 @@ function connectToDatabase() {
     db.transaction(
         function(tx) {
             tx.executeSql(
-                "CREATE TABLE IF NOT EXISTS hateData (id INTEGER PRIMARY KEY AUTOINCREMENT, hateUserId TEXT)",
+                "CREATE TABLE IF NOT EXISTS Dislike (id INTEGER PRIMARY KEY AUTOINCREMENT, hateUserId TEXT)",
                 [],
                 onSuccessExecuteSql,
                 onError
@@ -472,7 +467,7 @@ function deleteFunction() {
     db.transaction(
         function(tx) {
             tx.executeSql(
-                "INSERT INTO hateData (hateUserId) VALUES(?)",
+                "INSERT INTO Dislike (hateUserId) VALUES(?)",
                 [hateID],
                 redirect,
                 onError
