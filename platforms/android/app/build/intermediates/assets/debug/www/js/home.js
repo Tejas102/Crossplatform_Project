@@ -193,6 +193,10 @@ function users() {
 
 }
 
+// jQuery( ".selector" ).on( "tap", function( event ) { 
+//
+// } )
+
 function contactFunction() {
   //   console.log("pushed the contact button");
       alert("contact will be saved with name: "  + userIHate[i-1]["name"]);

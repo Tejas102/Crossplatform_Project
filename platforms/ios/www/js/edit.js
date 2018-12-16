@@ -43,9 +43,7 @@ function displayResults( tx, results ){
           document.getElementById("password").value = results.rows.item(i).password;
           document.getElementById("dob").value = results.rows.item(i).birthdate;
           document.getElementById("phone").value = results.rows.item(i).phone;
-        //  document.getElementById("photoContainer").value = results.rows.item(i).profile;
-          alert("photo in database")
-          alert(results.rows.item(i).profile)
+        
           var imageBox = document.getElementById("photoContainer");
           //imageBox.src="data:image/jpg;base64,"+results.rows.item(i).profile;
 imageBox.src=results.rows.item(i).profile;

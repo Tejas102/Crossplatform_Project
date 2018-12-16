@@ -23,6 +23,7 @@ function signupButton() {
     inputPhone = document.getElementById("phone").value;
     console.log(inputMail);
 
+    window.location.replace("home.html");
 
     db.transaction(
                    function(tx){

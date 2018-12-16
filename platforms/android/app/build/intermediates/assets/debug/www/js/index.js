@@ -7,7 +7,9 @@ var db = null;
 var inputName = 0;
 var inputPassword = 0;
 
-
+// jQuery( "#img1" ).on( "tap", function( event ) {
+//   window.location.replace("home.html");
+// } )
 
 // function login(){
 //     alert("login  button pressed");
@@ -75,7 +77,7 @@ function redirect(){
     console.log( 'Execute SQL completed' );
   }
   function onError( err ){
-    console.log( "eroor message"+err.message )
+    console.log( "error message"+err.message )
   }
 
 function connectToDatabase() {

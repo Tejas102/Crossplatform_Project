@@ -193,6 +193,10 @@ function users() {
 
 }
 
+// jQuery( ".selector" ).on( "tap", function( event ) {
+//
+// } )
+// like logic
 function contactFunction() {
   //   console.log("pushed the contact button");
       alert("contact will be saved with name: "  + userIHate[i-1]["name"]);
@@ -458,7 +462,7 @@ function connectToDatabase() {
     )
 
 }
-
+// dislike logic
 function deleteFunction() {
     console.log("delete button pressed");
     hateID = userIHate[i-1]["id"]

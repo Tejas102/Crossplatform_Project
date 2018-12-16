@@ -193,6 +193,10 @@ function users() {
 
 }
 
+// jQuery( ".selector" ).on( "tap", function( event ) { 
+//
+// } )
+
 function contactFunction() {
   //   console.log("pushed the contact button");
       alert("contact will be saved with name: "  + userIHate[i-1]["name"]);
@@ -342,7 +346,7 @@ function displayResults(tx, results) {
     var c = 0;
     var p = 0;
     if (results.rows.length == 0) {
-        alert("you have nobody in block person list");
+      //  alert("you have nobody in block person list");
 
     for (var z = 1; z <= image; z++) {
             userIHate[r] = userNearMe[z - 1];
